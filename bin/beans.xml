@@ -6,11 +6,60 @@
 			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
 			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
-			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd"
-	default-lazy-init="true">
-
-	<bean id="u" class="com.pomelo.dao.impl.UserImpl" />
-	<bean id="userService" class="com.pomelo.service.UserService">
-		<property name="userDAO" ref="u" />
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+	<aop:aspectj-autoproxy />
+	<context:annotation-config />
+	<context:component-scan base-package="com.pomelo"/>
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="annotatedClasses">
+			<list>
+				<value>com.pomelo.entity.User</value>
+				<value>com.pomelo.entity.Log</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
 	</bean>
+	
+	
+	<bean id="config" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+  <property name="location">
+   <value>classpath:jdbc.properties</value>
+  </property>
+ </bean>
+ 
+ <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+  <property name="username" value="${jdbc.username}"></property>
+  <property name="password" value="${jdbc.password}"></property>
+  <property name="url" value="${jdbc.url}"></property>
+  <property name="driverClassName" value="${jdbc.driverClassName}"></property>
+  <!-- <property name="initialSize" value="${jdbc.initialSize}"></property> -->
+  <property name="maxActive" value="${jdbc.maxActive}"></property>
+  <property name="maxIdle" value="${jdbc.maxIdle}"></property>
+  <property name="minIdle" value="${jdbc.minIdle}"></property>
+  <property name="maxWait" value="${jdbc.maxWait}"></property>
+  <property name="removeAbandoned" value="${jdbc.removeAbandoned}"></property>
+  <property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"></property>
+  <property name="logAbandoned" value="${jdbc.logAbandoned}"></property>
+ </bean>
+	
+	<!-- <bean id="u" class="com.pomelo.dao.impl.UserImpl" /> -->
+<!-- 	<bean id="userService" class="com.pomelo.service.UserService"
+		init-method="init" destroy-method="destroy">
+		<property name="userDAO" ref="u" />
+	</bean> -->
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<tx:annotation-driven transaction-manager="txManager"/>	
 </beans>

@@ -1,8 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_25"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/spring"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/hib4.2"/>
 	<classpathentry kind="lib" path="D:/迅雷下载/commons-logging-1.1.1-bin/commons-logging-1.1.1/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/aspectj-DEVELOPMENT-20141117191500/lib/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/aspectj-DEVELOPMENT-20141117191500/lib/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/com.springsource.org.aopalliance-1.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/commons-dbcp-1.4/commons-dbcp-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/commons-dbcp-1.4/commons-dbcp-1.4-sources.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/commons-pool-1.6-bin/commons-pool-1.6/commons-pool-1.6.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/commons-pool-1.6-bin/commons-pool-1.6/commons-pool-1.6-sources.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/mysql5.0qdb_43022/jdbc2_0-stdext.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/mysql5.0qdb_43022/mysql-connector-java-3.0.16-ga-bin.jar"/>
+	<classpathentry kind="lib" path="D:/迅雷下载/mysql5.0qdb_43022/proxool-0.8.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
